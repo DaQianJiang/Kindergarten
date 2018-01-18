@@ -1,0 +1,269 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>管理员_活动发布管理</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
+<link rel="stylesheet" type="text/css" href="CSS/bootstrap-table.css">
+<link rel="stylesheet" type="text/css" href="CSS/boot.css">
+<link rel="stylesheet" type="text/css" href="CSS/style.css">
+<link rel="stylesheet" type="text/css" href="CSS/common.css"/>
+
+<script type="text/javascript" src="JS/jquery-2.1.3.min.js"></script>
+<script type="text/javascript" src="JS/bootstrap.min.js"></script>
+<script type="text/javascript" src="JS/bootstrap-table.js"></script>
+<script type="text/javascript" src="JS/bootstrap-table-zh-CN.min.js"></script>
+<script type="text/javascript" src="JS/jquery.SuperSlide.2.1.1.js"></script>
+<script type="text/javascript" src="JS/validate.js"></script>
+<script type="text/javascript" src="JS/handlebars.js"></script>
+<script type="text/javascript" src="JS/jqueryExtend.js"></script>
+<script type="text/javascript" src="JS/activeInsert_A.js"></script>
+</head>
+
+<body id="bg">
+
+<div class="container">
+<div id="page-header" class="clearfix">
+<div class="login_part"></div>
+</div>
+		<div class="leftsidebar_box">
+		<div class="line"></div>
+	
+		<dl class="custom">
+			<dt onClick="changeImage()">权限分配管理<img src="images/left/select_xl01.png"></dt>
+			<dd class="first_dd"><a href="administor_right.html">权限分配</a></dd>
+		</dl>
+	
+		<dl class="channel">
+			<dt>信息管理<img src="images/left/select_xl01.png"></dt>
+			<dd class="first_dd"><a href="administor_enterstuinfo.html">学生信息录入</a></dd>
+			<dd><a href="administor_enterteacherinfo.html">家长信息录入</a></dd>
+			<dd><a href="administor_managestuinfo.html">学生信息管理</a></dd>
+			<dd><a href="administor_manageteacherinfo.html">老师信息管理</a></dd>
+		</dl>
+	
+		<dl class="app">
+			<dt onClick="changeImage()">活动发布<img src="images/left/select_xl01.png"></dt>
+			<dd class="first_dd"><a href="administor_entermanageactivinfo.html">活动发布与管理</a></dd>
+			<!-- <dd><a href="#">家长值班信息发布</a></dd> -->
+		</dl>
+	
+		<dl class="cloud">
+			<dt>教学管理<img src="images/left/select_xl01.png"></dt>
+			<dd class="first_dd"><a href="administor_studyphoto.html">教学相册管理</a></dd>
+<!-- 			<dd><a href="#">教学相册管理</a></dd> -->
+			<dd><a href="administor_childremark.html">每周幼儿点评</a></dd>
+<!-- 			<dd><a href="#">每周幼儿点评信息管理</a></dd> -->
+		</dl>
+	
+		<dl class="syetem_management">
+			<dt>活动统计管理<img src="images/left/select_xl01.png"></dt>
+			<dd class="first_dd"><a href="administor_parentduty.html">家长值班信息统计</a></dd>
+			<dd><a href="administor_childandparentinfo.html">亲子活动信息统计</a></dd>
+			<dd><a href="administor_childremarkinfo.html">幼儿点评信息统计</a></dd>
+		</dl>
+	   <dl class="syetem_management">
+			<dt>活动经费信息<img src="images/left/select_xl01.png"></dt>
+			<dd class="first_dd"><a href="administor_finacialinfo.html">活动经费信息查看</a></dd>
+		</dl>
+	</div>
+<div class="right_contain">
+		<div class="right_header" style="text-align:center;">
+			<h3 style="font-size:20px;margin-top:25px;">活动发布与管理管理</h3>
+		</div>
+		<div class="right_content">		
+       <div class="table_button1">
+        	<button type="button"  id="parentchidactive">发布亲子活动</button>
+        	<button type="button" id="parentdutyactive" style="margin-left:10px;" onclick="select_name()">发布家长值班信息</button>
+        </div>
+        <div class="tab_cotent">
+<div class="slideTxtBox">
+
+  <div class="hd"> 
+    <ul>
+      <li>亲子活动管理</li>
+      <li>家长值班信息管理</li>
+    </ul>
+  </div>
+  <div class="bd">
+	  <ul>
+	  <!-- 亲子活动信息列表 -->
+	  	<table class="table table-hover" style="margin-top:30px;" id="data_list">
+			
+		</table>
+		
+	  </ul>
+	  <ul>
+	  <!-- 家长值班信息列表 -->
+	  	<table class="table table-hover" style="margin-top:30px;" id="data_list1">		
+		</table>
+      </ul>
+
+  </div>
+
+</div>
+        </div>      
+	</div>
+
+</div>
+</div>
+
+<!-- 亲子活动模态框 -->
+		<div id="dialogBg"></div>
+		<div id="dialog_parentchild" class="animated">
+			<img class="dialogIco" width="50" height="50" src="images/ico.png" alt="" />
+			<div class="dialogTop">
+				<a href="javascript:;" class="claseDialogBtn">关闭</a>
+			</div>
+			  <form class="parentchild_form" style="" role="form" method="post" name="security_workinsert" action="">
+		    <div class="form-group">
+		    <label >选择日期</label>
+		   <input type="date" class="form-control" id="childactive_time">
+		  </div>
+		  <div class="form-group">
+		    <label>活动主题</label>
+		    <input type="text" id="childactive_them" class="form-control"  placeholder="请输入活动主题">
+		  </div>
+
+		  <div class="form-group"">
+		    <label>活动详情</label>
+		   <textarea class="form-control" rows="2" id="chile_content" placeholder="请输入活动详情"></textarea>
+		  </div>
+		
+		  <button type="submit" class="btn btn-info btn-search" style="margin-top:60px;margin-left:240px;" onclick="atc_btn()">提交</button>
+		</form>
+
+		</div>
+<!-- 家长值班信息模态框 -->
+<div id="dialog_parentduty" class="animated">
+			<img class="dialogIco" width="50" height="50" src="images/ico.png" alt="" />
+			<div class="dialogTop">
+				<a href="javascript:;" class="claseDialogBtn">关闭</a>
+			</div>
+			<form class="parentchild_form" style="" role="form" method="post" name="parent_duty" action="">
+		  <div class="form-group">
+		    <label >值班时间</label>
+		    <input type="date" class="form-control" name="duty_time" id="duty_time">
+		  </div>
+
+		 <div class="form-group">
+		    <label >值班班级</label>
+		   <select class="form-control" name="duty_class" id="duty_class">
+		   	<option value="大班">大班</option>
+		   	<option value="小班">小班</option>
+		   	<option value="中班">中班</option>
+		    </select>
+		  </div>
+		  <div class="form-group">
+		   <label >值班家长学生学号</label>
+         <!-- <input type="text" class="form-control" id="duty_childnum"> -->
+           <select class="form-control" id="select_list">
+		   	
+		    </select>
+         </div>
+		  <button type="submit" style="margin-top:60px;margin-left:240px;" class="btn btn-info btn-search" id="duty_submit" onclick="auth_act(this)">提交</button>
+		</form>
+		</div>
+<!-- 家长姓名下拉框赋值 -->
+	<textarea class="hide" id="sT_list" style="display: none">
+       {{#each selectlist}}
+       <option>{{sno}},{{pname}}</option>
+       {{/each}}
+     </textarea>
+
+<!-- 亲子活动详情模态框 -->
+		<div id="dialog_activeinfo" class="animated">
+			<img class="dialogIco" width="50" height="50" src="images/ico.png" alt="" />
+			<div class="dialogTop">
+				<a href="javascript:;" class="claseDialogBtn">关闭</a>
+			</div>
+			<div class="form-group" style="margin-top:20px;margin-left:10px;">
+		    <label>活动详情</label>
+		   <textarea class="form-control" rows="2" id="activity_content" style="width:90%;" disabled="disabled"></textarea>
+		  </div>
+		</div>
+
+<!-- 删除信息模态 -->
+<div id="dialog_deleteacher" class="animated">
+			<img class="dialogIco" width="50" height="50" src="images/ico.png" alt="" />
+			<div class="dialogTop">
+				<a href="javascript:;" class="claseDialogBtn">关闭</a>
+			</div>
+			<div class="dialog_content"><h2 style="font-size:20px">确认删除该条信息</h2></div>
+			<div class="dialog_button">
+        	<button type="button"  id="abolish">取消</button>
+        	<button type="submit"  id="sure_delete">确认删除</button>
+        </div>
+			<!-- <li><input type="button" value="取消" class="submitBtn" id="abolish" /></li>
+		    	<li><input type="button" value="确认删除" class="submitBtn" /></li> -->
+		</div>
+
+
+
+<textarea class="hide" id="T_list" style="display: none">
+ 		<tr>
+		     <!-- <th>编号</th> -->
+		     <th>时间</th>
+			<th>主题</th>
+			<th>内容</th>
+			<th>操作</th>
+		</tr>
+       {{#each list}}
+       <tr>
+<!-- 		<th>{{activityId}}</th> -->
+		<th>{{ext1}}</th>
+		<th>{{theme}}</th>
+		<th><button type="button" class="btn2 btn-info btn-search"  id="content_btn" onclick="detail_btn(this)"><span id="content" style="display: none">{{content}}</span>详情</button></th>
+			<th>
+		    <button type="button" class="btn2 btn-info btn-search" style="margin-left:10px" id="childparent_dele" onclick="del_btn(this)"><span id="delete_bt" style="display: none">{{activityId}}</span>删除</button></th>
+		</tr>		
+       {{/each}}
+     </textarea>
+
+<!-- 家长值班信息table -->
+
+<textarea class="hide" id="T_list1" style="display: none">
+ 		<tr>
+		     <th>时间</th>
+		     <th>值班班级</th>
+			<th>值班家长姓名</th>
+			<th>值班家长学生学号</th>
+			<th>操作</th>
+		</tr>
+       {{#each list1}}
+       <tr>
+		<th>{{ext3}}</th>
+		<th>{{dutyClass}}</th>
+		<th>{{dutyParentname}}</th>
+		<th>{{ext1}}</th>
+		<th>
+		   <button type="button" class="btn2 btn-info btn-search" style="margin-left:10px" onclick="delparentduty_btn(this)"><span id="deleteparentduty_bt" style="display: none">{{ext1}}</span>删除</button></th>
+		</tr>		
+       {{/each}}
+     </textarea>
+
+
+
+<script type="text/javascript">jQuery(".slideTxtBox").slide();</script>
+<script type="text/javascript">
+$(".leftsidebar_box dt").css({"background-color":"#3992d0"});
+$(".leftsidebar_box dt img").attr("src","images/left/select_xl01.png");
+$(function(){
+	$(".leftsidebar_box dd").hide();
+	$(".leftsidebar_box dt").click(function(){
+		$(".leftsidebar_box dt").css({"background-color":"#3992d0"})
+		$(this).css({"background-color": "#317eb4"});
+		$(this).parent().find('dd').removeClass("menu_chioce");
+		$(".leftsidebar_box dt img").attr("src","images/left/select_xl01.png");
+		$(this).parent().find('img').attr("src","images/left/select_xl.png");
+		$(".menu_chioce").slideUp(); 
+		$(this).parent().find('dd').slideToggle();
+		$(this).parent().find('dd').addClass("menu_chioce");
+	});
+})
+</script>
+
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>管理员_幼儿点评信息展示</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
+<link rel="stylesheet" type="text/css" href="CSS/bootstrap-table.css">
+<link rel="stylesheet" type="text/css" href="CSS/boot.css">
+<link rel="stylesheet" type="text/css" href="CSS/style.css">
+<link rel="stylesheet" type="text/css" href="CSS/common.css"/>
+<link rel="stylesheet" type="text/css" href="CSS/message.css"/>
+
+<script type="text/javascript" src="JS/jquery-2.1.3.min.js"></script>
+<script type="text/javascript" src="JS/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="JS/bootstrap-table.js"></script>
+<script type="text/javascript" src="JS/bootstrap-table-zh-CN.min.js"></script>
+<script type="text/javascript" src="JS/jquery.SuperSlide.2.1.1.js"></script>
+<script type="text/javascript" src="JS/validate.js"></script>
+<script type="text/javascript" src="JS/handlebars.js"></script>
+<script type="text/javascript" src="JS/jqueryExtend.js"></script>
+<script type="text/javascript" src="JS/administor_childremark.js"></script>
+
+</head>
+
+<body id="bg">
+
+<div class="container">
+<div id="page-header" class="clearfix">
+<div class="login_part"></div>
+</div>
+		<div class="leftsidebar_box">
+		<div class="line"></div>
+	
+		<dl class="custom">
+			<dt >权限分配管理<img src="images/left/select_xl01.png"></dt>
+			<dd class="first_dd"><a href="administor_right.html">权限分配</a></dd>
+		</dl>
+	
+		<dl class="channel">
+			<dt>信息管理<img src="images/left/select_xl01.png"></dt>
+			<dd class="first_dd"><a href="administor_enterstuinfo.html">学生信息录入</a></dd>
+			<dd><a href="administor_enterteacherinfo.html">家长信息录入</a></dd>
+			<dd><a href="administor_managestuinfo.html">学生信息管理</a></dd>
+			<dd><a href="administor_manageteacherinfo.html">教师信息管理</a></dd>
+		</dl>
+	
+		<dl class="app">
+			<dt >活动发布<img src="images/left/select_xl01.png"></dt>
+			<dd class="first_dd"><a href="administor_entermanageactivinfo.html">活动发布与管理</a></dd>
+			<!-- <dd><a href="#">家长值班信息发布</a></dd> -->
+		</dl>
+	
+		<dl class="cloud">
+			<dt>教学管理<img src="images/left/select_xl01.png"></dt>
+			<dd class="first_dd"><a href="administor_studyphoto.html">教学相册管理</a></dd>
+			<!-- <dd><a href="#">教学相册管理</a></dd> -->
+			<dd><a href="administor_childremark.html">每周幼儿点评</a></dd>
+			<!-- <dd><a href="#">每周幼儿点评信息管理</a></dd> -->
+		</dl>
+	
+		<dl class="syetem_management">
+			<dt>活动统计管理<img src="images/left/select_xl01.png"></dt>
+			<dd class="first_dd"><a href="administor_parentduty.html">家长值班信息统计</a></dd>
+			<dd><a href="administor_childandparentinfo.html">亲子活动信息统计</a></dd>
+			<dd><a href="administor_childremarkinfo.html">幼儿点评信息统计</a></dd>
+		</dl>
+		<dl class="syetem_management">
+			<dt>经费信息展示<img src="images/left/select_xl01.png"></dt>
+			<dd class="first_dd"><a href="administor_finacialinfo.html">经费信息</a></dd>
+		</dl>
+	</div>
+<div class="right_contain">
+		<div class="right_header" style="text-align:center;">
+			<h3 style="font-size:20px;margin-top:25px;;">幼儿周点评信息统计</h3>
+		</div>
+		<div class="right_content">		
+
+        <div class="tab_cotent" style="margin-top:-35px;">
+<div class="slideTxtBox">
+
+  <div class="hd"> 
+    <ul>
+      <li>幼儿点评信息</li>
+    </ul>
+  </div>
+  <div class="bd">
+	  <ul>
+
+	  <form class="form-inline" style="" role="form" method="post" name="childremark_search" action="" style="margin-top:-20px;">
+
+		 <div class="form-group"  style="padding-left: 30px;" >
+		    <label >选择班级</label>
+
+		   <select class="form-control" id="class_num">
+		   	<option value="大班">大班</option>
+		   	<option value="中班">中班</option>
+		   	<option value="小班">小班</option>
+		    </select>
+        </div>
+
+		  <div class="form-group" style="padding-left: 30px;">
+		   <label >学生</label>
+         <input type="text" class="form-control" id="s_name">
+         </div>
+         <button type="button" class="btn btn-info btn-search" onclick="qyr_act()">查询</button>
+		</form>
+
+<table class="table table-hover" style="margin-top:50px;" id="data_list">
+		</table>
+      </ul>
+  </div>
+
+</div>
+        </div>      
+	</div>
+
+</div>
+</div>
+
+<textarea class="hide" id="T_list" style="display: none">
+ 		<tr>
+		     <th>学号</th>
+		     <th>姓名</th>
+			<th>班级</th>
+			<th>课堂表现</th>
+<!-- 			<th>总体点评</th> -->
+			<th>点评教师</th>
+		</tr>
+       {{#each list}}
+       <tr>
+		<th>{{sno}}</th>
+		<th>{{sname}}</th>
+		<th>{{ext1}}</th>
+		<th>{{totalRemark}}</th>
+		<th>{{ext2}}</th>
+		</tr>		
+       {{/each}}
+     </textarea>
+
+
+		
+
+
+<script type="text/javascript">jQuery(".slideTxtBox").slide();</script>
+<script type="text/javascript">
+$(".leftsidebar_box dt").css({"background-color":"#3992d0"});
+$(".leftsidebar_box dt img").attr("src","images/left/select_xl01.png");
+$(function(){
+	$(".leftsidebar_box dd").hide();
+	$(".leftsidebar_box dt").click(function(){
+		$(".leftsidebar_box dt").css({"background-color":"#3992d0"})
+		$(this).css({"background-color": "#317eb4"});
+		$(this).parent().find('dd').removeClass("menu_chioce");
+		$(".leftsidebar_box dt img").attr("src","images/left/select_xl01.png");
+		$(this).parent().find('img').attr("src","images/left/select_xl.png");
+		$(".menu_chioce").slideUp(); 
+		$(this).parent().find('dd').slideToggle();
+		$(this).parent().find('dd').addClass("menu_chioce");
+	});
+})
+</script>
+
+</body>
+</html>

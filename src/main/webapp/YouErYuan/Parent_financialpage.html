@@ -1,0 +1,261 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>家长_经费信息管理</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
+<link rel="stylesheet" type="text/css" href="CSS/bootstrap-table.css">
+<link rel="stylesheet" type="text/css" href="CSS/boot.css">
+<link rel="stylesheet" type="text/css" href="CSS/style.css">
+<link rel="stylesheet" href="CSS/common.css"/>
+
+<script type="text/javascript" src="JS/jquery-2.1.3.min.js"></script>
+<script type="text/javascript" src="JS/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="JS/bootstrap-table.js"></script>
+<script type="text/javascript" src="JS/bootstrap-table-zh-CN.min.js"></script>
+<script type="text/javascript" src="JS/jquery.SuperSlide.2.1.1.js"></script>
+<script type="text/javascript" src="JS/validate.js"></script>
+<script type="text/javascript" src="JS/Parent_financialpage.js"></script>
+<script type="text/javascript" src="JS/handlebars.js"></script>
+<script type="text/javascript" src="JS/jqueryExtend.js"></script>
+
+</head>
+
+<body id="bg">
+
+<div class="container">
+<div id="page-header" class="clearfix">
+<div class="login_part"></div>
+</div>
+				<div class="leftsidebar_box">
+		<div class="line"></div>
+
+	
+		<dl class="custom">
+			<dt onClick="changeImage()">个人主页<img src="images/left/select_xl01.png"></dt>
+			<dd class="first_dd"><a href="parent_studyphot.html">个人事务</a></dd>
+		</dl>
+	
+		<dl class="channel">
+			<dt>校园活动信息<img src="images/left/select_xl01.png"></dt>
+			<dd class="first_dd"><a href="Parentnormal_parent_childactive.html">亲子活动参与报名</a></dd>
+			<dd><a href="Parentnormal_dutyinfo.html">家长值班情况</a></dd>
+			<dd><a href="parent_childandparentinfo.html">亲子活动参与情况</a></dd>
+		</dl>
+	
+		<dl class="app">
+			<dt onClick="changeImage()">学生教学情况<img src="images/left/select_xl01.png"></dt>
+			<dd><a href="parent_studyphot.html">教学相册查看</a></dd>
+<!-- 			<dd><a href="#">接口类型管理</a></dd> -->
+		</dl>
+	
+		<dl class="cloud">
+			<dt>经费管理<img src="images/left/select_xl01.png"></dt>
+			<dd class="first_dd"><a href="#">收入支出管理</a></dd>
+		</dl>
+	</div>
+<div class="right_contain">
+		<div class="right_header" style="text-align:center;">
+			<h3 style="font-size:20px;margin-top:25px;">经费管理</h3>
+		</div>
+		<div class="right_content">	
+			
+       <div class="table_button1">
+        	<button type="button" onclick="in_btn(this)">收入信息录入</button>
+        	<button type="button" id="expend_btn" style="margin-left:10px;" >支出信息录入</button>
+        </div>
+        <div class="tab_cotent">
+<div class="slideTxtBox">
+
+  <div class="hd"> 
+    <ul>
+      <li>收入信息管理</li>
+      <li>支出信息管理</li>
+      <li>总额</li>
+    </ul>
+  </div>
+  <div class="bd">
+	  <ul>
+	  	<table class="table table-hover" style="margin-top:30px;" id="in_list">	
+		</table>
+	  </ul>
+
+	  <ul>
+      <table class="table table-hover" style="margin-top:30px;" id="out_list">	
+		</table>
+      </ul>
+
+      <ul>
+      <table id="data_list">
+      </table>
+      </ul>
+
+  </div>
+
+</div>
+        </div>      
+	</div>
+
+</div>
+</div>
+
+<!-- 收入录入模态框 -->
+		<div id="dialogBg"></div>
+		<div id="dialog_incominfo" class="animated">
+			<img class="dialogIco" width="50" height="50" src="images/ico.png" alt="" />
+			<div class="dialogTop">
+				<a href="javascript:;" class="claseDialogBtn">关闭</a>
+			</div>
+			 <form class="parentchild_form" style="" role="form" method="post" name="income_form" action="">
+		    <div class="form-group">
+		    <label >收入日期</label>
+		   <input type="date" class="form-control" id="income_time">
+		  </div>
+		  <div class="form-group">
+		    <label>收入金额</label>
+		    <input type="text" id="income_number" class="form-control" >
+		  </div>
+
+		
+		  <button type="button" class="btn btn-info btn-search" style="margin-top:60px;margin-left:240px;" id="income_act">提交</button>
+		</form>
+
+		</div>
+
+<!-- 支出信息模态框 -->
+<div id="dialog_expendinfo" class="animated">
+			<img class="dialogIco" width="50" height="50" src="images/ico.png" alt="" />
+			<div class="dialogTop">
+				<a href="javascript:;" class="claseDialogBtn">关闭</a>
+			</div>
+			<form class="parentchild_form" style="" role="form" method="post" name="expend_form" action="/Kindergarten/entryPayout.do" ENCTYPE="multipart/form-data">
+		  <div class="form-group">
+		    <label >支出时间</label>
+		    <input type="date" class="form-control" name="expend_time">
+		  </div>
+
+		  <div class="form-group">
+		    <label >支出项</label>
+		    <select class="form-control" name="expend_item">
+		   	<option value="文具购买">文具购买</option>
+		   	<option value="联谊活动">联谊活动</option>
+		    </select>
+		  </div>
+		  <div class="form-group">
+		    <label >支出金额</label>
+		    <input type="text" class="form-control" name="expend_money">
+		  </div>
+         <div class="form-group">
+		   <label >支出凭证</label>
+         <input type="file" class="form-control" name="out_invoice">
+         </div>
+		  <button type="submit" style="margin-top:60px;margin-left:240px;" class="btn btn-info btn-search">提交</button>
+		</form>
+		</div>
+
+
+<!-- 删除信息模态 -->
+<div id="dialog_deleteacher" class="animated">
+			<img class="dialogIco" width="50" height="50" src="images/ico.png" alt="" />
+			<div class="dialogTop">
+				<a href="javascript:;" class="claseDialogBtn">关闭</a>
+			</div>
+			<div class="dialog_content"><h2 style="font-size:20px">确认删除该条信息</h2></div>
+			<div class="dialog_button">
+        	<button type="button"  id="abolish">取消</button>
+        	<button type="submit"  id="sure_delete">确认删除</button>
+        </div>
+		</div>
+
+
+<textarea class="hide" id="outT_list" style="display: none">
+ 		<tr>
+		     <th>编号</th>
+		     <th>支出时间</th>
+			<th>支出项</th>
+			<th>支出金额</th>
+			<th>支出家长</th>
+			<th>支出凭证</th>
+			<th>支出班级</th>
+			<th>操作</th>
+		</tr>
+       {{#each outlist}}
+       <tr>
+		<th>{{payoutId}}</th>
+		<th>{{outDetail}}</th>
+		<th>{{outType}}</th>
+		<th>{{outNum}}</th>
+		<th>{{optParent}}</th>
+		<th><img src="/Kindergarten/YouErYuan/photo/entryPayout/{{outInvoice}}" height="40" width="60"></th>
+		<th>{{classNum}}</th>
+		<th><button type="button" class="btn2 btn-info btn-search" style="margin-left:10px" onclick="expenddelete_btn(this)">
+		<span id="payout_id" style="display: none">{{payoutId}}</span>
+		<span id="out_num" style="display: none">{{outNum}}</span>删除</button></th>
+		</tr>	
+       {{/each}}
+     </textarea>
+
+<textarea class="hide" id="inT_list" style="display: none">
+ 		<tr>
+		     <th>编号</th>
+		     <th>收入时间</th>
+			<th>收入金额</th>
+			<th>收入班级</th>
+			<th>操作</th>
+		</tr>
+       {{#each inlist}}
+       <tr>
+		<th>{{incomeId}}</th>
+		<th>{{ext1}}</th>
+		<th>{{inNum}}</th>
+		<th>{{classNum}}</th>
+		<th>
+		    <button type="button" class="btn2 btn-info btn-search" style="margin-left:10px" onclick="incom_delebtn(this)">
+		    <span id="income_id" style="display: none">{{incomeId}}</span>
+		    <span id="in_num" style="display: none">{{inNum}}</span>删除</button></th>
+		</tr>	
+       {{/each}}
+     </textarea>
+     
+     <textarea class="hide" id="T_list" style="display: none">
+ 		<tr>
+      		<th>收入总额</th>
+      		<th>支出总额</th>
+      		<th>结余</th>
+      	</tr>
+       <tr>
+		<th>{{income}}</th>
+		<th>{{outPay}}</th>
+		<th>{{totalCoin}}</th>
+		</tr>	
+     </textarea>
+
+<script type="text/javascript">jQuery(".slideTxtBox").slide();</script>
+<script type="text/javascript">
+$(".leftsidebar_box dt").css({"background-color":"#3992d0"});
+$(".leftsidebar_box dt img").attr("src","images/left/select_xl01.png");
+$(function(){
+	$(".leftsidebar_box dd").hide();
+	$(".leftsidebar_box dt").click(function(){
+		$(".leftsidebar_box dt").css({"background-color":"#3992d0"})
+		$(this).css({"background-color": "#317eb4"});
+		$(this).parent().find('dd').removeClass("menu_chioce");
+		$(".leftsidebar_box dt img").attr("src","images/left/select_xl01.png");
+		$(this).parent().find('img').attr("src","images/left/select_xl.png");
+		$(".menu_chioce").slideUp(); 
+		$(this).parent().find('dd').slideToggle();
+		$(this).parent().find('dd').addClass("menu_chioce");
+	});
+})
+</script>
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jq.child.admin.dao.ChildRemarksMapper" >
+  <resultMap id="BaseResultMap" type="com.jq.child.admin.pojo.ChildRemarks" >
+    <result column="sno" property="sno" jdbcType="VARCHAR" />
+    <result column="sname" property="sname" jdbcType="VARCHAR" />
+    <result column="creat_time" property="creatTime" jdbcType="DATE" />
+    <result column="class_behavior" property="classBehavior" jdbcType="VARCHAR" />
+    <result column="total_remark" property="totalRemark" jdbcType="VARCHAR" />
+    <result column="teacher_opinion" property="teacherOpinion" jdbcType="VARCHAR" />
+    <result column="ext1" property="ext1" jdbcType="VARCHAR" />
+    <result column="ext2" property="ext2" jdbcType="VARCHAR" />
+    <result column="ext3" property="ext3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    sno, sname, creat_time, class_behavior, total_remark, teacher_opinion, ext1, ext2, 
+    ext3
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jq.child.admin.pojo.ChildRemarksExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from child_remarks
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  
+    <select id="selectChildRmark" resultMap="BaseResultMap" parameterType="map">
+  	SELECT * FROM child_remarks WHERE sname LIKE CONCAT('%','${name}','%') and ext1 LIKE CONCAT('%','${classNum}','%')
+  </select>
+  <delete id="deleteByExample" parameterType="com.jq.child.admin.pojo.ChildRemarksExample" >
+    delete from child_remarks
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jq.child.admin.pojo.ChildRemarks" >
+    insert into child_remarks (sno, sname, creat_time, 
+      class_behavior, total_remark, teacher_opinion, 
+      ext1, ext2, ext3)
+    values (#{sno,jdbcType=VARCHAR}, #{sname,jdbcType=VARCHAR}, #{creatTime,jdbcType=DATE}, 
+      #{classBehavior,jdbcType=VARCHAR}, #{totalRemark,jdbcType=VARCHAR}, #{teacherOpinion,jdbcType=VARCHAR}, 
+      #{ext1,jdbcType=VARCHAR}, #{ext2,jdbcType=VARCHAR}, #{ext3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jq.child.admin.pojo.ChildRemarks" >
+    insert into child_remarks
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sno != null" >
+        sno,
+      </if>
+      <if test="sname != null" >
+        sname,
+      </if>
+      <if test="creatTime != null" >
+        creat_time,
+      </if>
+      <if test="classBehavior != null" >
+        class_behavior,
+      </if>
+      <if test="totalRemark != null" >
+        total_remark,
+      </if>
+      <if test="teacherOpinion != null" >
+        teacher_opinion,
+      </if>
+      <if test="ext1 != null" >
+        ext1,
+      </if>
+      <if test="ext2 != null" >
+        ext2,
+      </if>
+      <if test="ext3 != null" >
+        ext3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sno != null" >
+        #{sno,jdbcType=VARCHAR},
+      </if>
+      <if test="sname != null" >
+        #{sname,jdbcType=VARCHAR},
+      </if>
+      <if test="creatTime != null" >
+        #{creatTime,jdbcType=DATE},
+      </if>
+      <if test="classBehavior != null" >
+        #{classBehavior,jdbcType=VARCHAR},
+      </if>
+      <if test="totalRemark != null" >
+        #{totalRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherOpinion != null" >
+        #{teacherOpinion,jdbcType=VARCHAR},
+      </if>
+      <if test="ext1 != null" >
+        #{ext1,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null" >
+        #{ext2,jdbcType=VARCHAR},
+      </if>
+      <if test="ext3 != null" >
+        #{ext3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jq.child.admin.pojo.ChildRemarksExample" resultType="java.lang.Integer" >
+    select count(*) from child_remarks
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update child_remarks
+    <set >
+      <if test="record.sno != null" >
+        sno = #{record.sno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sname != null" >
+        sname = #{record.sname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creatTime != null" >
+        creat_time = #{record.creatTime,jdbcType=DATE},
+      </if>
+      <if test="record.classBehavior != null" >
+        class_behavior = #{record.classBehavior,jdbcType=VARCHAR},
+      </if>
+      <if test="record.totalRemark != null" >
+        total_remark = #{record.totalRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.teacherOpinion != null" >
+        teacher_opinion = #{record.teacherOpinion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ext1 != null" >
+        ext1 = #{record.ext1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ext2 != null" >
+        ext2 = #{record.ext2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ext3 != null" >
+        ext3 = #{record.ext3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update child_remarks
+    set sno = #{record.sno,jdbcType=VARCHAR},
+      sname = #{record.sname,jdbcType=VARCHAR},
+      creat_time = #{record.creatTime,jdbcType=DATE},
+      class_behavior = #{record.classBehavior,jdbcType=VARCHAR},
+      total_remark = #{record.totalRemark,jdbcType=VARCHAR},
+      teacher_opinion = #{record.teacherOpinion,jdbcType=VARCHAR},
+      ext1 = #{record.ext1,jdbcType=VARCHAR},
+      ext2 = #{record.ext2,jdbcType=VARCHAR},
+      ext3 = #{record.ext3,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

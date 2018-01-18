@@ -1,0 +1,233 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>管理员_权限分配</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
+<link rel="stylesheet" type="text/css" href="CSS/bootstrap-table.css">
+<link rel="stylesheet" type="text/css" href="CSS/boot.css">
+<link rel="stylesheet" type="text/css" href="CSS/style.css">
+<link rel="stylesheet" type="text/css" href="CSS/common.css"/>
+<link rel="stylesheet" type="text/css" href="CSS/message.css"/>
+
+
+<script type="text/javascript" src="JS/jquery-2.1.3.min.js"></script>
+<script type="text/javascript" src="JS/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="JS/bootstrap-table.js"></script>
+<script type="text/javascript" src="JS/bootstrap-table-zh-CN.min.js"></script>
+<script type="text/javascript" src="JS/jquery.SuperSlide.2.1.1.js"></script>
+<script type="text/javascript" src="JS/validate.js"></script>
+<script type="text/javascript" src="JS/administor_right.js"></script>
+<script type="text/javascript" src="JS/handlebars.js"></script>
+<script type="text/javascript" src="JS/jqueryExtend.js"></script>
+</head>
+
+<body id="bg">
+
+<div class="container">
+<div id="page-header">
+<!-- <div class="login_part"></div> -->
+</div>
+		<div class="leftsidebar_box">
+		<div class="line"></div>
+	
+		<dl class="custom">
+			<dt >权限分配管理<img src="images/left/select_xl01.png"></dt>
+			<dd class="first_dd"><a href="administor_right.html">权限分配</a></dd>
+		</dl>
+	
+		<dl class="channel">
+			<dt >信息管理<img src="images/left/select_xl01.png"></dt>
+			<dd class="first_dd"><a href="administor_enterstuinfo.html">学生信息录入</a></dd>
+			<dd><a href="administor_enterteacherinfo.html">教师信息录入</a></dd>
+			<dd><a href="administor_managestuinfo.html">学生信息管理</a></dd>
+			<dd><a href="administor_manageteacherinfo.html">教师信息管理</a></dd>
+		</dl>
+	
+		<dl class="app">
+			<dt >活动发布<img src="images/left/select_xl01.png"></dt>
+			<dd class="first_dd"><a href="administor_entermanageactivinfo.html">活动发布与管理</a></dd>
+		</dl>
+	
+		<dl class="cloud">
+			<dt>教学管理<img src="images/left/select_xl01.png"></dt>
+			<dd class="first_dd"><a href="administor_studyphoto.html">上传教学相册</a></dd>
+			<dd><a href="administor_childremark.html">每周幼儿点评</a></dd>
+		</dl>
+	
+		<dl class="syetem_management">
+			<dt>活动统计管理<img src="images/left/select_xl01.png"></dt>
+			<dd class="first_dd"><a href="administor_parentduty.html">家长值班信息统计</a></dd>
+			<dd><a href="administor_childandparentinfo.html">亲子活动信息统计</a></dd>
+			<dd><a href="administor_childandparentinfo.html">幼儿点评信息统计</a></dd>
+		</dl>
+
+		<dl class="syetem_management">
+			<dt>经费信息<img src="images/left/select_xl01.png"></dt>
+			<dd class="first_dd"><a href="administor_finacialinfo.html">经费信息查看</a></dd>
+		</dl>
+	</div>
+<div class="right_contain">
+		<div class="right_header" style="text-align:center;">
+			<h3 style="font-size:20px;margin-top:25px;">权限分配</h3>
+		</div>
+		<div class="right_content">		
+       <div class="table_button1">
+        	<button type="button"  onclick="btn_parentright()">权限分配</button>
+
+        </div>
+
+        <div class="tab_cotent">
+<div class="slideTxtBox">
+
+  <div class="hd"> 
+    <ul>
+      <li>权限分配信息</li>
+    </ul>
+  </div>
+  <div class="bd">
+	  <ul>
+
+	  <form class="form-inline" style="" role="form" method="post" name="childremark_search" action="" style="margin-top:-20px;">
+
+		 <div class="form-group"  style="padding-left: 30px;" >
+		    <label >选择班级</label>
+
+		   <select class="form-control" id="duty_class">
+		   	<option value="大班">大班</option>
+		   	<option value="中班">中班</option>
+		   	<option value="小班">小班</option>
+		    </select>
+        </div>
+
+         <button type="button" class="btn btn-info btn-search" id="qry_acct">查询</button>
+		</form>
+
+<table class="table table-hover" style="margin-top:50px;" id="data_list">
+		</table>
+      </ul>
+
+  </div>
+
+</div>
+        </div>      
+	</div>
+
+</div>
+</div>
+
+<!-- 权限分配模态框 -->
+<div id="dialogBg"></div>
+<div id="dialog_parentright" class="animated">
+			<img class="dialogIco" width="50" height="50" src="images/ico.png" alt="" />
+			<div class="dialogTop">
+				<a href="javascript:;" class="claseDialogBtn">关闭</a>
+			</div>
+		<form class="parentright_from" style="" role="form" method="post" name="childremark" action="">
+		 <div class="form-group"  style="margin-left: 30px;width:50%;margin-top:25px;" >
+		    <label >班级</label>
+		   <select class="form-control" id="duty_classaa">
+		   	<option value="大班">大班</option>
+		   	<option value="中班">中班</option>
+		   	<option value="小班">小班</option>
+		    </select>
+        </div>
+		  <div class="form-group" style="margin-left: 30px;width:50%">
+		   <label >家长姓名</label>
+         <select class="form-control" id="select_list">
+		   	
+		    </select>
+         </div>
+		  <button type="button" style="margin-top:40px;margin-left:150px;" class="btn btn-info btn-search" onclick="auth_act(this)">分配权限</button>
+		</form>
+		</div>
+
+
+
+<!-- 删除信息模态 -->
+<div id="dialog_parentrightdele" class="animated">
+			<img class="dialogIco" width="50" height="50" src="images/ico.png" alt="" />
+			<div class="dialogTop">
+				<a href="javascript:;" class="claseDialogBtn">关闭</a>
+			</div>
+			<div class="dialog_content"><h2 style="font-size:20px">确认删除该条信息</h2></div>
+			<div class="dialog_button">
+        	<button type="button"  id="abolish">取消</button>
+        	<button type="submit"  id="sure_delete">确认删除</button>
+        </div>
+		</div>
+
+	<textarea class="hide" id="sT_list" style="display: none">
+       {{#each selectlist}}
+       <option>{{sno}},{{pname}}</option>
+       {{/each}}
+     </textarea>
+
+
+<textarea class="hide" id="T_list" style="display: none">
+ 		<tr>
+ 		  <!--    <th>ID</th> -->
+		     <th>班级</th>
+		     <th>家长姓名</th>
+			<th>权限授予者</th>
+			<th>操作</th>
+		</tr>
+       {{#each list}}
+       <tr>
+      <!--  <th>{{authorityId}}</th> -->
+		<th>{{ext1}}</th>
+		<th>{{pname}}</th>
+		<th>{{tname}}</th>
+		<th><button type="button" class="btn2 btn-info btn-search" style="margin-left:10px" onclick="parentrightdelete_btn(this)"><span id="snoss" style="display: none">{{sno}}</span>删除</button></th>
+		</tr>		
+       {{/each}}
+     </textarea>
+
+<!-- 弹出信息框 -->
+	<div id="dialogBg"></div>
+		<div id="dialog_message" class="animated">
+		<img class="dialogIco" width="50" height="50" src="images/ico.png" alt="" />
+			<div class="dialogTop">
+				<a href="javascript:;" class="claseDialogBtn">关闭</a>
+			</div>
+			<div class="dialog_content"><h2 style="font-size:20px"><span class="message_info" style="display:inline"></span></h2></div>
+			<div class="dialog_button">
+        	<button type="submit"  id="sure">确定</button>
+        </div>
+	</div> 
+	
+<style type="text/css">
+ .leftsidebar_box dt:first-child
+{
+	background-color:#3992d0;
+	}
+.leftsidebar_box dd:first-child
+{
+	background-color:#3992d0;
+	}
+</style>
+
+<script type="text/javascript">jQuery(".slideTxtBox").slide();</script>
+<script type="text/javascript">
+$(".leftsidebar_box dt").css({"background-color":"#3992d0"});
+$(".leftsidebar_box dt img").attr("src","images/left/select_xl01.png");
+$(function(){
+	$(".leftsidebar_box dd").hide();
+	$(".leftsidebar_box dt").click(function(){
+		$(".leftsidebar_box dt").css({"background-color":"#3992d0"})
+		$(this).css({"background-color": "#317eb4"});
+		$(this).parent().find('dd').removeClass("menu_chioce");
+		$(".leftsidebar_box dt img").attr("src","images/left/select_xl01.png");
+		$(this).parent().find('img').attr("src","images/left/select_xl.png");
+		$(".menu_chioce").slideUp(); 
+		$(this).parent().find('dd').slideToggle();
+		$(this).parent().find('dd').addClass("menu_chioce");
+	});
+})
+</script>
+
+</body>
+</html>

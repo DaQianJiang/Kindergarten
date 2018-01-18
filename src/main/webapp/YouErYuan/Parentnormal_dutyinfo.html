@@ -1,0 +1,147 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>家长_家长值班活动查看</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
+<link rel="stylesheet" type="text/css" href="CSS/bootstrap-table.css">
+<link rel="stylesheet" type="text/css" href="CSS/boot.css">
+<link rel="stylesheet" type="text/css" href="CSS/style.css">
+<link rel="stylesheet" type="text/css" href="CSS/common.css"/>
+
+<script type="text/javascript" src="JS/jquery-2.1.3.min.js"></script>
+<script type="text/javascript" src="JS/bootstrap.min.js"></script>
+<script type="text/javascript" src="JS/bootstrap-table.js"></script>
+<script type="text/javascript" src="JS/bootstrap-table-zh-CN.min.js"></script>
+<script type="text/javascript" src="JS/jquery.SuperSlide.2.1.1.js"></script>
+<script type="text/javascript" src="JS/validate.js"></script>
+<!-- <script type="text/javascript" src="JS/handlebars.js"></script>
+<script type="text/javascript" src="JS/jqueryExtend.js"></script> -->
+<script type="text/javascript" src="JS/activeInsert_A.js"></script>
+</head>
+
+<body id="bg">
+
+<div class="container">
+<div id="page-header" class="clearfix">
+<div class="login_part"></div>
+</div>
+		<div class="leftsidebar_box">
+		<div class="line"></div>
+	
+		<dl class="custom">
+			<dt onClick="changeImage()">个人主页<img src="images/left/select_xl01.png"></dt>
+			<dd class="first_dd"><a href="ParentNormal_owenpage.html">个人事务</a></dd>
+		</dl>
+	
+		<dl class="channel">
+			<dt>校园活动信息<img src="images/left/select_xl01.png"></dt>
+			<dd class="first_dd"><a href="Parentnormal_parent_childactive.html">亲子活动参与报名</a></dd>
+			<dd><a href="Parentnormal_dutyinfo.html">家长值班情况</a></dd>
+		<!-- 	<dd><a href="#">安全作业参与情况</a></dd> -->
+			<dd><a href="parent_childandparentinfo.html">亲子活动参与情况</a></dd>
+		</dl>
+	
+		<dl class="app">
+			<dt onClick="changeImage()">学生教学情况<img src="images/left/select_xl01.png"></dt>
+		<!-- 	<dd class="first_dd"><a href="#">幼儿点评信息查看</a></dd> -->
+			<dd><a href="parent_studyphot.html">教学相册查看</a></dd>
+		</dl>
+	
+		<dl class="cloud">
+			<dt>经费信息<img src="images/left/select_xl01.png"></dt>
+			<dd class="first_dd"><a href="Parentnormal_financialpage.html">经费信息查看</a></dd>
+
+		</dl>
+	</div>
+<div class="right_contain">
+		<div class="right_header" style="text-align:center;">
+			<h3 style="font-size:20px;margin-top:25px;;">活动发布与管理管理</h3>
+		</div>
+		<div class="right_content">		
+        <div class="tab_cotent" style="margin-top:-35px;">
+<div class="slideTxtBox">
+
+  <div class="hd"> 
+    <ul>
+      <li>家长值班信息</li>
+    </ul>
+  </div>
+  <div class="bd">
+	  <ul>
+	  	<table class="table table-hover" style="margin-top:30px;" id="data_list1">		
+		</table>
+<!-- 		更该信息展示分页，采用bootstrap-table插件 -->
+<!-- 		<div class="form_table">
+				<table data-toggle="table" data-height="280px" data-pagination="true" id="parentdutyTable">
+				    <thead>
+				        <tr>
+				            <th data-field="state" data-checkbox="true" ></th>
+				            <th data-field="ext3" data-align="center">时间</th>
+				            <th data-field="dutyClass" data-align="center">值班班级</th>
+				            <th data-field="dutyParentname" data-align="center">姓名</th>
+				        </tr>
+				    </thead>
+				</table>
+			</div> -->
+		
+		
+      </ul>
+
+  </div>
+
+</div>
+        </div>      
+	</div>
+
+</div>
+</div>
+
+<!-- 家长值班信息table -->
+
+ <textarea class="hide" id="T_list1" style="display: none">
+ 		<tr>
+		     <th>时间</th>
+		     <th>值班班级</th>
+			<th>值班家长姓名</th>
+			<th>是否参与</th>
+		</tr>
+       {{#each list1}}
+       <tr>
+		<th>{{ext3}}</th>
+		<th>{{dutyClass}}</th>
+		<th>{{dutyParentname}}</th>
+		{{#if ext2}}
+       <th>未参与</th>
+       {{else}}
+       <th>参与</th>
+       {{/if}}
+		</tr>		
+       {{/each}}
+     </textarea>
+
+
+
+<script type="text/javascript">jQuery(".slideTxtBox").slide();</script>
+<script type="text/javascript">
+$(".leftsidebar_box dt").css({"background-color":"#3992d0"});
+$(".leftsidebar_box dt img").attr("src","images/left/select_xl01.png");
+$(function(){
+	$(".leftsidebar_box dd").hide();
+	$(".leftsidebar_box dt").click(function(){
+		$(".leftsidebar_box dt").css({"background-color":"#3992d0"})
+		$(this).css({"background-color": "#317eb4"});
+		$(this).parent().find('dd').removeClass("menu_chioce");
+		$(".leftsidebar_box dt img").attr("src","images/left/select_xl01.png");
+		$(this).parent().find('img').attr("src","images/left/select_xl.png");
+		$(".menu_chioce").slideUp(); 
+		$(this).parent().find('dd').slideToggle();
+		$(this).parent().find('dd').addClass("menu_chioce");
+	});
+})
+</script>
+
+</body>
+</html>

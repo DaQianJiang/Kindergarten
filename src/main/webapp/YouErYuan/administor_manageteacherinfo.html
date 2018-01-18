@@ -1,0 +1,227 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<link rel="stylesheet" type="text/css" href="CSS/bootstrap-table.css">
+<link rel="stylesheet" type="text/css" href="CSS/boot.css">
+
+<link rel="stylesheet" type="text/css" href="CSS/style.css">
+<link rel="stylesheet" href="CSS/common.css"/>
+<link rel="stylesheet" type="text/css" href="CSS/message.css"/>
+
+<script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript" src="JS/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="JS/bootstrap-table.js"></script>
+<script type="text/javascript" src="JS/bootstrap-table-zh-CN.min.js"></script>
+<script type="text/javascript" src="JS/validate.js"></script>
+<script type="text/javascript" src="JS/administratorteacher.js"></script>
+<script type="text/javascript" src="JS/handlebars.js"></script>
+<script type="text/javascript" src="JS/jqueryExtend.js"></script>
+
+
+
+<title>管理员_教师信息管理</title>
+
+</head>
+
+<body id="bg">
+
+<div class="container">
+<div id="page-header" class="clearfix">
+<div class="login_part"></div>
+</div>
+		<div class="leftsidebar_box">
+		<div class="line"></div>
+	
+		<dl class="custom">
+			<dt onClick="changeImage()">权限分配管理<img src="images/left/select_xl01.png"></dt>
+			<dd class="first_dd"><a href="administor_right.html">权限分配</a></dd>
+		</dl>
+	
+		<dl class="channel">
+			<dt>信息管理<img src="images/left/select_xl01.png"></dt>
+			<dd class="first_dd"><a href="administor_enterstuinfo.html">学生信息录入</a></dd>
+			<dd><a href="administor_enterteacherinfo.html">家长信息录入</a></dd>
+			<dd><a href="administor_managestuinfo.html">学生信息管理</a></dd>
+			<dd><a href="#">家长信息管理</a></dd>
+		</dl>
+	
+		<dl class="app">
+			<dt onClick="changeImage()">活动发布<img src="images/left/select_xl01.png"></dt>
+			<dd class="first_dd"><a href="administor_entermanageactivinfo.html">活动发布与管理</a></dd>
+			<!-- <dd><a href="#">家长值班信息发布</a></dd> -->
+		</dl>
+	
+		<dl class="cloud">
+			<dt>教学管理<img src="images/left/select_xl01.png"></dt>
+			<dd class="first_dd"><a href="administor_studyphoto.html">教学相册管理</a></dd>
+			<!-- <dd><a href="#">教学相册管理</a></dd> -->
+			<dd><a href="#">每周幼儿点评</a></dd>
+			<!-- <dd><a href="#">每周幼儿点评信息管理</a></dd> -->
+		</dl>
+	
+		<dl class="syetem_management">
+			<dt>活动统计管理<img src="images/left/select_xl01.png"></dt>
+			<dd class="first_dd"><a href="administor_parentduty.html">家长值班信息统计</a></dd>
+			<dd><a href="administor_securityinfo.html">安全作业信息统计</a></dd>
+			<dd><a href="administor_childandparentinfo.html">亲子活动信息统计</a></dd>
+			<dd><a href="administor_childremark.html">幼儿点评信息统计</a></dd>
+		</dl>
+		<dl class="syetem_management">
+			<dt>经费信息展示<img src="images/left/select_xl01.png"></dt>
+			<dd class="first_dd"><a href="administor_finacialinfo.html">经费信息</a></dd>
+		</dl>
+	</div>
+<div class="right_contain">
+		<div class="right_header" style="text-align:center;">
+			<h3 style="font-size:20px;margin-top:25px;;">教师信息管理</h3>
+		</div>
+		<div class="right_content">		
+		<form class="form-inline" role="form" method="post" name="teacher_search" action="">
+		  <div class="form-group">
+		    <label >姓名</label>
+		    <input type="text" class="form-control" id="search_teachername" name="teacher_name" placeholder="请输入姓名">
+		  </div>
+		  <div class="form-group">
+		    <label>职工号</label>
+		    <input type="text" class="form-control" id="search_teachernum" placeholder="请输入职工号" name="teacher_number">
+		  </div>
+		  <div class="form-group">
+		    <label>课程</label>
+		    <input type="text" class="form-control" id="search_teacherleason" placeholder="请输入课程" name="teacher_class">
+		  </div>
+		  <button type="button" class="btn btn-info btn-search" id="search_teacher">搜索</button>
+		</form>
+
+       <div class="table_button">
+        	<button type="button"  id="editteacher_btn">修改</button>
+        	<a href="administor_enterteacherinfo.html"><button type="button">添加</button></a>
+        	<button type="button"  id="deleteacher_btn">删除</button>
+        </div>
+		<div class="form_table">
+				<table  id="teacher_table" data-toggle="table"  data-height="350px" data-pagination="true">
+				    <thead>
+				        <tr>
+				            <th data-field="state" data-checkbox="true" ></th>
+				            <th data-field=teacherNumber data-align="center">职工号</th>
+				            <th data-field="teacherName" data-align="center">姓名</th>
+				            <th data-field="age" data-align="center">年龄</th>
+							<th data-field="sex" data-align="center">性别</th>
+							<th data-field="phone" data-align="center">电话</th>
+							<th data-field="education" data-align="center">学历</th>
+							<th data-field="adress" data-align="center">地址</th>
+							<th data-field="leasonName" data-align="center">课程</th>
+							<th data-field="ext1" data-align="center">照片</th>
+				        </tr>
+				    </thead>
+				</table>
+			</div>
+	</div>
+</div>
+</div>
+
+<!-- 编辑学生信息模态框 -->
+		<div id="dialogBg_tacher"></div>
+		<div id="dialog_editteacher" class="animated">
+			<img class="dialogIco" width="50" height="50" src="images/ico.png" alt="" />
+			<div class="dialogTop">
+				<a href="javascript:;" class="claseDialogBtn">关闭</a>
+			</div>
+			              <form name="teacher_info_insert" action="/Kindergarten/entryTeacherInfo.do" ENCTYPE="multipart/form-data" method="post">
+              <table>
+			   	<tr>
+			   	    <td>职工号</td>
+			   		<td><input type="text"  name="teacher_number" placeholder="职工号" class="form-control1" ></td>
+			   		<td>姓名</td>
+			   		<td><input type="text" name="teacher_name"  placeholder="姓名" class="form-control1"></td>
+
+			   	</tr>
+			   	<tr>
+			   	    <td>年龄</td>
+			   		<td><input type="text" name="teacher_age" placeholder="年龄" class="form-control1"></td>
+			   		<td>性别</td>
+			   		<td>
+			   		<select class="form-control1" name="teacher_sex">
+			   			<option value="女">女</option>
+			   			<option value="男">男</option>
+			   		</select>
+			   		</td>
+		   	    </tr>
+			   	<tr>
+			   	    <td>电话</td>
+			   		<td><input type="text" name="teacher_phone" placeholder="电话" class="form-control1"></td>
+			   	    <td>学历</td>
+			   		<td><input type="text" name="teacher_diploma" placeholder="学历" class="form-control1"></td>
+			   	</tr>
+			   	<tr>
+                     <td>课程</td>
+			   		<td><input type="text" name="teacher_class" placeholder="课程" class="form-control1"></td>
+
+			   	    <td>地址</td>
+			   		<td><input type="text" name="teacher_adress" placeholder="地址" class="form-control1"></td>
+			   		
+			   	</tr>
+			   	<tr>
+			   	    <td>照片</td>
+			   		<td><input type="file" name="teacher_picture"></td>
+			   	</tr>
+		     </table>
+		    	<li><input type="submit" value="确认提交" class="submitBtn" style="margin-left: 40%;" /></li>
+		    </form>
+		</div>
+<!-- 删除信息模态框 -->
+<div id="dialog_deleteacher" class="animated">
+			<img class="dialogIco" width="50" height="50" src="images/ico.png" alt="" />
+			<div class="dialogTop">
+				<a href="javascript:;" class="claseDialogBtn">关闭</a>
+			</div>
+			<div class="dialog_content"><h2 style="font-size:20px">确认删除该条信息</h2></div>
+			<div class="dialog_button">
+        	<button type="button"  id="abolish">取消</button>
+        	<button type="button"  id="sure_delete">确认删除</button>
+        </div>
+			<!-- <li><input type="button" value="取消" class="submitBtn" id="abolish" /></li>
+		    	<li><input type="button" value="确认删除" class="submitBtn" /></li> -->
+		</div>
+
+
+<!-- 弹出信息框 -->
+		<div id="dialog_messagetea" class="animated">
+		<img class="dialogIco" width="50" height="50" src="images/ico.png" alt="" />
+			<div class="dialogTop">
+				<a href="javascript:;" class="claseDialogBtn">关闭</a>
+			</div>
+			<div class="dialog_content"><h2 style="font-size:20px"><span class="message_info" style="display:inline"></span></h2></div>
+			<div class="dialog_button">
+        	<button type="submit"  id="sure">确定</button>
+        </div>
+		</div>
+
+<script type="text/javascript">
+$(".leftsidebar_box dt").css({"background-color":"#3992d0"});
+$(".leftsidebar_box dt img").attr("src","images/left/select_xl01.png");
+$(function(){
+	$(".leftsidebar_box dd").hide();
+	$(".leftsidebar_box dt").click(function(){
+		$(".leftsidebar_box dt").css({"background-color":"#3992d0"})
+		$(this).css({"background-color": "#317eb4"});
+		$(this).parent().find('dd').removeClass("menu_chioce");
+		$(".leftsidebar_box dt img").attr("src","images/left/select_xl01.png");
+		$(this).parent().find('img').attr("src","images/left/select_xl.png");
+		$(".menu_chioce").slideUp(); 
+		$(this).parent().find('dd').slideToggle();
+		$(this).parent().find('dd').addClass("menu_chioce");
+	});
+})
+</script>
+
+
+
+
+
+
+</body>
+</html>
