@@ -16,7 +16,7 @@ public class encryptionUtil {
 		MessageDigest md5=MessageDigest.getInstance("MD5");
 		BASE64Encoder base64en = new BASE64Encoder();
 		String newstr=base64en.encode(md5.digest(str.getBytes("utf-8")));
-		logger.info("加密后字符串"+newstr);
+		logger.info("secret str"+newstr);
 		return newstr;
 	}
 	
@@ -28,7 +28,7 @@ public class encryptionUtil {
 			OutPutParamUtil ret = new OutPutParamUtil();
 			ret.setRetCode(code);
 			String n = encryptionUtil.encoderByMD5(s);
-			System.out.println("加密后的字符"+n);
+			System.out.println("secret str"+n);
 		} catch (NoSuchAlgorithmException e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
