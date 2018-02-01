@@ -35,7 +35,7 @@ public class ActivityDetailSVImpl implements IActivityDetailSV {
 		dtl.setPname(pname);
 		dtl.setSno(sno);
 		dtl.setTheme(theme);
-		logger.info("insert"+gson.toJson(dtl));
+		logger.info("≤Â»Î£∫"+gson.toJson(dtl));
 		activityDetailMapper.insertSelective(dtl);
 	}
 	public List<ActivityDetail> qryActivityDtl(int activityId) throws Exception {

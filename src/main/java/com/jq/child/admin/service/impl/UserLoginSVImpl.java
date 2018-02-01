@@ -50,7 +50,7 @@ public class UserLoginSVImpl implements IUserLoginSV {
 		String pass = encryptionUtil.encoderByMD5(password);
 		UserLogin bean = new UserLogin();
 		OutPutParamUtil ret = new OutPutParamUtil();
-		
+		//logger.info("加密后的密码："+pass);
 		if(list.size()==1){
 			bean = list.get(0);
 		}
@@ -66,25 +66,25 @@ public class UserLoginSVImpl implements IUserLoginSV {
 						bean.setPassword(pass);
 						bean.setUserType(userType);
 						saveUserLoginInfo(bean);
-						logger.info("the frist login");
+						logger.info("第一次登录....");
 						ret.setRetCode("00001");
-						ret.setRetDesc("login success");
+						ret.setRetDesc("登录成功");
 					}
 				}else{
 					if(pass.equals(bean.getPassword())){
 						ret.setRetCode("00001");
-						ret.setRetDesc("login success");
+						ret.setRetDesc("登录成功");
 					}
 					else{
 						ret.setRetCode("00000");
-						ret.setRetDesc("passw erro ");
+						ret.setRetDesc("密码不正确");
 					}
 				}
 			}
 			else{
 				ret.setRetCode("00000");
-				ret.setRetDesc("login failed ,user not exist or identify dont same");
-				logger.info("user not exist or identify dont same");
+				ret.setRetDesc("登录失败,用户不存在或与身份不匹配");
+				logger.info("用户不存在或与身份不匹配....");
 			}
 		}else if(userType.equals(constants.USER_TYPE.STUDENT)){
 			List<StudentInfo> slist = stuSV.getStuInfoBySno(account);
@@ -99,27 +99,27 @@ public class UserLoginSVImpl implements IUserLoginSV {
 						bean.setPassword(pass);
 						bean.setUserType(userType);
 						saveUserLoginInfo(bean);
-						logger.info("the frist login ");
+						logger.info("第一次登录....");
 						ret.setRetCode("00002");
-						ret.setRetDesc("login success");
+						ret.setRetDesc("登录成功");
 					}
 				}else{
 					if(pass.equals(bean.getPassword())){
 						ret.setRetCode("00002");
-						ret.setRetDesc("login success");
-						logger.info("password right");
+						ret.setRetDesc("登录成功");
+						logger.info("密码正确....");
 					}
 					else{
 						ret.setRetCode("00000");
-						ret.setRetDesc("password don't fit");
-						logger.info("password erro");
+						ret.setRetDesc("密码与身份不匹配");
+						logger.info("密码正确....");
 					}
 				}
 			}
 			else{
 				ret.setRetCode("00000");
-				ret.setRetDesc("login failed ,user not exist or identify dont same");
-				logger.info("login failed ,user not exist or identify dont same");
+				ret.setRetDesc("登录失败,用户不存在或与身份不匹配");
+				logger.info("登录失败,用户不存在或与身份不匹配");
 			}
 			
 		}

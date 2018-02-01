@@ -18,7 +18,7 @@ public interface TeacherInfoMapper {
     int insertSelective(TeacherInfo record);
 
     List<TeacherInfo> selectByExample(TeacherInfoExample example);
-
+    //单个模糊查询
     List<TeacherInfo> selectOneTeacherInfo(Map paramMap);
 
     int updateByExampleSelective(@Param("record") TeacherInfo record, @Param("example") TeacherInfoExample example);

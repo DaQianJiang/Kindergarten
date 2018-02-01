@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
-import org.junit.Test;
 
 import redis.clients.jedis.Jedis;
 
@@ -307,7 +306,7 @@ public class JedisUtil {
 		
 	}
     
-    @Test
+    
     public void test(){
     	try {
 			JedisUtil.set("ts","tianshenhao");

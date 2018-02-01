@@ -5,7 +5,6 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import org.apache.log4j.Logger;
-import org.junit.Test;
 
 import sun.misc.BASE64Encoder;
 
@@ -16,11 +15,10 @@ public class encryptionUtil {
 		MessageDigest md5=MessageDigest.getInstance("MD5");
 		BASE64Encoder base64en = new BASE64Encoder();
 		String newstr=base64en.encode(md5.digest(str.getBytes("utf-8")));
-		logger.info("secret str"+newstr);
+		logger.info("���ܺ��ַ���"+newstr);
 		return newstr;
 	}
 	
-	@Test
 	public void test(){
 		String s = "asd123";
 		try {
@@ -28,7 +26,7 @@ public class encryptionUtil {
 			OutPutParamUtil ret = new OutPutParamUtil();
 			ret.setRetCode(code);
 			String n = encryptionUtil.encoderByMD5(s);
-			System.out.println("secret str"+n);
+			System.out.println("���ܺ���ַ�"+n);
 		} catch (NoSuchAlgorithmException e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();

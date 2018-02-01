@@ -12,3 +12,4 @@ public interface constants {
 		public static String OUTPAY = "1";
 	}
 }
+ 
