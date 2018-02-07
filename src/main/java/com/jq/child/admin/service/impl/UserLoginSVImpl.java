@@ -50,7 +50,7 @@ public class UserLoginSVImpl implements IUserLoginSV {
 		String pass = encryptionUtil.encoderByMD5(password);
 		UserLogin bean = new UserLogin();
 		OutPutParamUtil ret = new OutPutParamUtil();
-		//logger.info("¼ÓÃÜºóµÄÃÜÂë£º"+pass);
+		//logger.info("åŠ å¯†åçš„å¯†ç ï¼š"+pass);
 		if(list.size()==1){
 			bean = list.get(0);
 		}
@@ -66,25 +66,25 @@ public class UserLoginSVImpl implements IUserLoginSV {
 						bean.setPassword(pass);
 						bean.setUserType(userType);
 						saveUserLoginInfo(bean);
-						logger.info("µÚÒ»´ÎµÇÂ¼....");
+						logger.info("ç¬¬ä¸€æ¬¡ç™»å½•....");
 						ret.setRetCode("00001");
-						ret.setRetDesc("µÇÂ¼³É¹¦");
+						ret.setRetDesc("ç™»å½•æˆåŠŸ");
 					}
 				}else{
 					if(pass.equals(bean.getPassword())){
 						ret.setRetCode("00001");
-						ret.setRetDesc("µÇÂ¼³É¹¦");
+						ret.setRetDesc("ç™»å½•æˆåŠŸ");
 					}
 					else{
 						ret.setRetCode("00000");
-						ret.setRetDesc("ÃÜÂë²»ÕıÈ·");
+						ret.setRetDesc("å¯†ç ä¸æ­£ç¡®");
 					}
 				}
 			}
 			else{
 				ret.setRetCode("00000");
-				ret.setRetDesc("µÇÂ¼Ê§°Ü,ÓÃ»§²»´æÔÚ»òÓëÉí·İ²»Æ¥Åä");
-				logger.info("ÓÃ»§²»´æÔÚ»òÓëÉí·İ²»Æ¥Åä....");
+				ret.setRetDesc("ç™»å½•å¤±è´¥,ç”¨æˆ·ä¸å­˜åœ¨æˆ–ä¸èº«ä»½ä¸åŒ¹é…");
+				logger.info("ç”¨æˆ·ä¸å­˜åœ¨æˆ–ä¸èº«ä»½ä¸åŒ¹é…....");
 			}
 		}else if(userType.equals(constants.USER_TYPE.STUDENT)){
 			List<StudentInfo> slist = stuSV.getStuInfoBySno(account);
@@ -99,27 +99,27 @@ public class UserLoginSVImpl implements IUserLoginSV {
 						bean.setPassword(pass);
 						bean.setUserType(userType);
 						saveUserLoginInfo(bean);
-						logger.info("µÚÒ»´ÎµÇÂ¼....");
+						logger.info("ç¬¬ä¸€æ¬¡ç™»å½•....");
 						ret.setRetCode("00002");
-						ret.setRetDesc("µÇÂ¼³É¹¦");
+						ret.setRetDesc("ç™»å½•æˆåŠŸ");
 					}
 				}else{
 					if(pass.equals(bean.getPassword())){
 						ret.setRetCode("00002");
-						ret.setRetDesc("µÇÂ¼³É¹¦");
-						logger.info("ÃÜÂëÕıÈ·....");
+						ret.setRetDesc("ç™»å½•æˆåŠŸ");
+						logger.info("å¯†ç æ­£ç¡®....");
 					}
 					else{
 						ret.setRetCode("00000");
-						ret.setRetDesc("ÃÜÂëÓëÉí·İ²»Æ¥Åä");
-						logger.info("ÃÜÂëÕıÈ·....");
+						ret.setRetDesc("å¯†ç ä¸èº«ä»½ä¸åŒ¹é…");
+						logger.info("å¯†ç æ­£ç¡®....");
 					}
 				}
 			}
 			else{
 				ret.setRetCode("00000");
-				ret.setRetDesc("µÇÂ¼Ê§°Ü,ÓÃ»§²»´æÔÚ»òÓëÉí·İ²»Æ¥Åä");
-				logger.info("µÇÂ¼Ê§°Ü,ÓÃ»§²»´æÔÚ»òÓëÉí·İ²»Æ¥Åä");
+				ret.setRetDesc("ç™»å½•å¤±è´¥,ç”¨æˆ·ä¸å­˜åœ¨æˆ–ä¸èº«ä»½ä¸åŒ¹é…");
+				logger.info("ç™»å½•å¤±è´¥,ç”¨æˆ·ä¸å­˜åœ¨æˆ–ä¸èº«ä»½ä¸åŒ¹é…");
 			}
 			
 		}

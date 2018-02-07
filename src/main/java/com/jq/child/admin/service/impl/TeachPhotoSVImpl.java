@@ -30,7 +30,7 @@ public class TeachPhotoSVImpl implements ITeachPhotoSV {
 	}
 
 	/**
-	 * 查询信息通过班级
+	 * 鏌ヨ淇℃伅閫氳繃鐝骇
 	 */
 	public List<TeachPhoto> qryTeachPhotoValue(String classNum) throws Exception {
 		// TODO Auto-generated method stub
